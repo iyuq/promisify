@@ -17,7 +17,7 @@ var promisefyFS = function(path, encode){
     });
 };
 
-promisefyFS('./chapter04/file1.txt', 'utf8').then(function(file1){
+promisefyFS('file1.txt', 'utf8').then(function(file1){
     console.log(file1);
 });
 
