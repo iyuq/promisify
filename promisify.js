@@ -1,5 +1,5 @@
 
-var promisefy = function (method) {
+var promisify = function (method) {
     return function (ctx) {
     	//获取method调用的需要参数
         var args = Array.prototype.slice.call(arguments, 1);
@@ -23,4 +23,4 @@ var promisefy = function (method) {
     };
 };
 
-exports.promisefy = promisefy;
+exports.promisify = promisify;
