@@ -1,5 +1,5 @@
 
-var promisefy = function (method) {
+var promisefy = function (method, ctx) {
     return function () {
     	//获取method调用的需要参数
         var args = Array.prototype.slice.call(arguments, 0);
@@ -17,7 +17,7 @@ var promisefy = function (method) {
             }
             args.push(callback());
             //调用method
-            method.apply(null, args);
+            method.apply(ctx, args);
         });
 
     };
