@@ -25,10 +25,10 @@ promisefyFS('file1.txt', 'utf8').then(function(file1){
 这是最简单的将fs.readFile包成Promise。
 要将这个函数一般化，那我们必须将要promise化的方法当成一个参数传入，由于不同的函数接收的参数个数不一样，这样的话我们得用到method.apply()函数。
 ```
-var promisefy = function (method, ctx) {
-    return function () {
+var promisefy = function (method) {
+    return function (ctx) {
     	//获取method调用的需要参数
-        var args = Array.prototype.slice.call(arguments, 0);
+        var args = Array.prototype.slice.call(arguments, 1);
 
         //返回一个新的Promise对象
         return new Promise(function (resolve, reject) {
@@ -50,8 +50,8 @@ var promisefy = function (method, ctx) {
 };
 
 var readFile = promisefy(fs.readFile);
-readFile('file1.txt', 'utf8').then(function (file1) {
-    return readFile(file1.trim(), 'utf8');
+readFile(null, 'file1.txt', 'utf8').then(function (file1) {
+    return readFile(null, file1.trim(), 'utf8');
 }).then(function (file2) {
     console.log(file2);
 });

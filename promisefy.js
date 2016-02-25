@@ -1,8 +1,8 @@
 
-var promisefy = function (method, ctx) {
-    return function () {
+var promisefy = function (method) {
+    return function (ctx) {
     	//获取method调用的需要参数
-        var args = Array.prototype.slice.call(arguments, 0);
+        var args = Array.prototype.slice.call(arguments, 1);
 
         //返回一个新的Promise对象
         return new Promise(function (resolve, reject) {
